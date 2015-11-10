@@ -35,12 +35,12 @@ void UtilManager::toast(string text, CAViewController* object) {
 
 	CCSize winSize = CAApplication::getApplication()->getWinSize();
 	//CAView *back = CAView::createWithCenter(CCRect(winSize.width*0.5, winSize.height*0.5, _dip(winSize.width)*0.3, _dip(winSize.height)*0.3));
-	CAView *back = CAView::createWithCenter(CCRect(winSize.width*0.5, winSize.height*0.5, 180 * getScale(), 30 * getScale()));
+	CAView *back = CAView::createWithCenter(CCRect(winSize.width*0.5, winSize.height*0.5, 250 * getScale(), 100 * getScale()));
 	back->setTag(TOAST_VIEW_TAG);
 	back->setColor(ccc4(31, 31, 31, 200));//40
 
 	CALabel *title = CALabel::createWithCenter(CADipRect(_dip(back->getBounds().size.width*0.5),
-		_dip(back->getBounds().size.height*0.5), 180 * getScale(), 30 * getScale()));
+		_dip(back->getBounds().size.height*0.5), 2500 * getScale(), 100 * getScale()));
 	//	title->setText(UTF8ToGBK::transferToGbk(text));
 	title->setText(text);
 	//title->setText("sssss");

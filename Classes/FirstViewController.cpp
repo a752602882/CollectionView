@@ -228,6 +228,7 @@ void FirstViewController::viewDidLoad(){
 
 	CATextField* textField1 = CATextField::createWithFrame(CCRect(INTERVAL_PX, _px(20), TEXTFIELD_LONG, _px(50)));
 	textField1->setTag(1006);
+	textField1->setText("3");
 	textField1->setSpaceHolderColor(CAColor_orange);
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	textField1->setPlaceHolder(UTF8("3-10有效"));
@@ -259,6 +260,7 @@ void FirstViewController::viewDidLoad(){
 	CATextField* textField2 = CATextField::createWithFrame(CCRect(TEXTFIELD_LONG + INTERVAL_PX * 5, _px(20), TEXTFIELD_LONG, _px(50)));
 	textField2->setSpaceHolderColor(CAColor_orange);
 	textField2->setTag(1008);
+	textField2->setText("5");
 	textField2->setPlaceHolder("");
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	textField2->setPlaceHolder( UTF8("输入切数"));
@@ -607,8 +609,9 @@ void FirstViewController::CLandlordBton(CAControl* btn, CCPoint point){
 	}
 	else
 	{
-		if ((m_MultiRoadData.size() / 10 > 0) && (m_MultiRoadData.size() % 10 > 2) || (m_MultiRoadData.size() % 10 == 0))
-
+		//if ((m_MultiRoadData.size() / 10 > 0) && (m_MultiRoadData.size() % 10 > 2) || (m_MultiRoadData.size() % 10 == 0))
+		if (((m_MultiRoadData.size() / 10 > 0) && (m_MultiRoadData.size() % 10 > 2)) ||
+			((m_MultiRoadData.size() / 10 > 1) && (m_MultiRoadData.size() % 10 == 0)))
 		{
 			//计算最后一个颜色
 			CompoundColor();
@@ -652,9 +655,9 @@ void FirstViewController::CFarmerBton(CAControl* btn, CCPoint point){
 	{
 		//现在要求如何获得MultiRoad的最后一幅图位置
 
-		if ((m_MultiRoadData.size() / 10>0) && (m_MultiRoadData.size() % 10>2) || (m_MultiRoadData.size() % 10==0))
-			//if (((m_MultiRoadData.size() / 10>0) && (m_MultiRoadData.size() % 10>2)) || 
-			//((m_MultiRoadData.size() / 10 > 0) && (m_MultiRoadData.size() % 10 == 0)))
+		//if ((m_MultiRoadData.size() / 10>0) && (m_MultiRoadData.size() % 10>2) || (m_MultiRoadData.size() % 10==0))
+			if (((m_MultiRoadData.size() / 10>0) && (m_MultiRoadData.size() % 10>2)) || 
+			((m_MultiRoadData.size() / 10 > 1) && (m_MultiRoadData.size() % 10 == 0)))
 		{
 			//计算最后一个颜色
 			CompoundColor();

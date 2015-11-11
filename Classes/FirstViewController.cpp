@@ -322,7 +322,7 @@ void FirstViewController::viewDidLoad(){
 
 	CALabel* label = CALabel::createWithFrame(CCRect(5, secondViewY - _px(50), 20, 10));
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	textField2->setPlaceHolder(UTF8("开启gaib"));
+	textField2->setPlaceHolder(UTF8("输入切数"));
 #else
 	textField2->setPlaceHolder("输入切数");
 #endif	
@@ -377,7 +377,7 @@ void FirstViewController::viewDidLoad(){
 	//------------------------------------------------button----------------------------------------------
 	float BUTTON_LONG = (winRect.size.width - _px(60)) / 4;
 
-	float buttonY = secondViewY2  + winRect.size.width / 22 * 6 + _px(10);
+	float buttonY = secondViewY2  + winRect.size.width / 22 * 6 + _px(40);
 
 	
 	CAButton* m_button = CAButton::createWithFrame(CCRect(_px(10), buttonY, BUTTON_LONG, _px(90)), CAButtonTypeSquareRect);
@@ -607,11 +607,15 @@ void FirstViewController::CLandlordBton(CAControl* btn, CCPoint point){
 	}
 	else
 	{
-		m_BLUE_GRAYRoadData.push_back(1);
-		BGRoad.addRoadData(1);
+		if ((m_MultiRoadData.size() / 10 > 0) && (m_MultiRoadData.size() % 10 > 2) || (m_MultiRoadData.size() % 10 == 0))
+
+		{
+			//计算最后一个颜色
+			CompoundColor();
+		}
 	}
 	
-    //CompoundColor();
+    
 	//画第一副图的背景色
 	DrawbackgroundColor();
 		
@@ -643,12 +647,21 @@ void FirstViewController::CFarmerBton(CAControl* btn, CCPoint point){
 	if (state == false)
 	{
 		CompoundColor(ADD_RED_TAG);
-	} else
-	{
-	m_BLUE_GRAYRoadData.push_back(2);
-	BGRoad.addRoadData(2);
 	}
-	//CompoundColor();
+	else
+	{
+		//现在要求如何获得MultiRoad的最后一幅图位置
+
+		if ((m_MultiRoadData.size() / 10>0) && (m_MultiRoadData.size() % 10>2) || (m_MultiRoadData.size() % 10==0))
+			//if (((m_MultiRoadData.size() / 10>0) && (m_MultiRoadData.size() % 10>2)) || 
+			//((m_MultiRoadData.size() / 10 > 0) && (m_MultiRoadData.size() % 10 == 0)))
+		{
+			//计算最后一个颜色
+			CompoundColor();
+		}
+	
+	}
+	
 	//画第一副图的背景色
 	DrawbackgroundColor();
 
@@ -1270,12 +1283,25 @@ void FirstViewController::BackMultiRoadSpace(){
 
 		
 	}
-}/*
+}
+//庄 闲 不更新大陆桥最后一个颜色判断
 void FirstViewController::CompoundColor(){
 
-	for (int j = 1; j < 22; j++){
+	        int i, j;
+			
 
-		for (int i = 2; i < RowNum; i++){
+			if (m_MultiRoadData.size() % 10==0)
+			{
+				i = 9;
+				j = m_MultiRoadData.size() / 10-1;
+
+			}
+			else
+			{
+				
+				i = m_MultiRoadData.size() % 10 - 1;
+				j = m_MultiRoadData.size() / 10;
+			}
 			int n1 = a[0][j-1];
 			int n2 = a[1][j-1];
 			int n3 = a[0][j];
@@ -1288,14 +1314,13 @@ void FirstViewController::CompoundColor(){
 
 			int nRet1 = (n1 + n2 + n3 + n4) % 2;
 			int nRet2 = (n5 + n6 + n7 + n8) % 2;
-			if (n8==0)
-			{
-				return;
-			}
+// 			if (n8==0)
+// 			{
+// 				return;
+// 			}
 			if (nRet1 == nRet2)
 			{
 				//绿色
-				SubDataView1->pushBtn_BLUETEST(0, i, j);
 				m_BLUE_GRAYRoadData.push_back(1);
 				BGRoad.addRoadData(1);
 				
@@ -1303,21 +1328,18 @@ void FirstViewController::CompoundColor(){
 			else
 			{
 				//黑色
-				SubDataView1->pushBtn_GRAYTEST(0, i, j);
+				
 				m_BLUE_GRAYRoadData.push_back(2);
 				BGRoad.addRoadData(2);
 			
 			}
 
 
-		}
-
-	}
 
 
 	
 }
-*/
+
 void FirstViewController::CompoundBigRoadColor(){
 
 
